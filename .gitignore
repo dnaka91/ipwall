@@ -1,0 +1,5 @@
+/.vagrant
+/target
+
+.env
+Justfile
