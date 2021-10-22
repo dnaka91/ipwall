@@ -2,22 +2,23 @@
 name = "ipwall"
 version = "0.1.0"
 authors = ["Dominik Nakamura <dnaka91@gmail.com>"]
-edition = "2018"
+edition = "2021"
+rust-version = "1.56"
 license = "GPL-3.0-only"
 description = "Download IP blocklists and add them to your iptables setup"
 
 [dependencies]
-anyhow = "1.0.42"
-attohttpc = { version = "0.17.0", default-features = false, features = ["compress", "tls-rustls"] }
+anyhow = "1.0.44"
+attohttpc = { version = "0.18.0", default-features = false, features = ["compress", "tls-rustls"] }
 chrono = { version = "0.4.19", default-features = false, features = ["clock", "serde", "std"] }
 directories-next = "2.0.0"
 duct = "0.13.5"
 ipnetwork = { version = "0.18.0", default-features = false }
 rand = "0.8.4"
-serde = { version = "1.0.126", features = ["derive"] }
-structopt = "0.3.22"
+serde = { version = "1.0.130", features = ["derive"] }
+structopt = "0.3.25"
 toml = "0.5.8"
-which = "4.1.0"
+which = "4.2.2"
 
 [profile.release]
 lto = true
