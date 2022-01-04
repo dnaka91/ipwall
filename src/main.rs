@@ -3,6 +3,7 @@
 #![warn(clippy::nursery)]
 
 use anyhow::Result;
+use clap::Parser;
 use ipwall::{
     firewall::{Firewall, IpSet},
     provider::{Provider, Source},
@@ -10,17 +11,16 @@ use ipwall::{
     state::State,
     LastModified,
 };
-use structopt::{clap::AppSettings, StructOpt};
 
-#[derive(StructOpt)]
-#[structopt(about, author, setting = AppSettings::ColoredHelp)]
+#[derive(Parser)]
+#[clap(about, author, version)]
 struct Opts {
-    #[structopt(short, long)]
+    #[clap(short, long)]
     uninstall: bool,
 }
 
 fn main() -> Result<()> {
-    let opts = Opts::from_args();
+    let opts = Opts::parse();
     let settings = Settings::load()?;
     let mut state = State::load()?;
 

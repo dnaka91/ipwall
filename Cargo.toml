@@ -11,12 +11,12 @@ description = "Download IP blocklists and add them to your iptables setup"
 anyhow = "1.0.52"
 attohttpc = { version = "0.18.0", default-features = false, features = ["compress", "tls-rustls"] }
 chrono = { version = "0.4.19", default-features = false, features = ["clock", "serde", "std"] }
+clap = { version = "3.0.1", features = ["derive"] }
 directories-next = "2.0.0"
 duct = "0.13.5"
 ipnetwork = { version = "0.18.0", default-features = false }
 rand = "0.8.4"
 serde = { version = "1.0.133", features = ["derive"] }
-structopt = "0.3.25"
 toml = "0.5.8"
 which = "4.2.2"
 
