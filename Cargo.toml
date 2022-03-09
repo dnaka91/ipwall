@@ -8,17 +8,17 @@ license = "GPL-3.0-only"
 description = "Download IP blocklists and add them to your iptables setup"
 
 [dependencies]
-anyhow = "1.0.52"
+anyhow = "1.0.56"
 attohttpc = { version = "0.18.0", default-features = false, features = ["compress", "tls-rustls"] }
 chrono = { version = "0.4.19", default-features = false, features = ["clock", "serde", "std"] }
-clap = { version = "3.0.1", features = ["derive"] }
+clap = { version = "3.1.6", features = ["derive"] }
 directories-next = "2.0.0"
 duct = "0.13.5"
 ipnetwork = { version = "0.18.0", default-features = false }
-rand = "0.8.4"
-serde = { version = "1.0.133", features = ["derive"] }
+rand = "0.8.5"
+serde = { version = "1.0.136", features = ["derive"] }
 toml = "0.5.8"
-which = "4.2.2"
+which = "4.2.4"
 
 [profile.release]
 lto = true
