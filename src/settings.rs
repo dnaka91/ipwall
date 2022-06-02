@@ -7,7 +7,7 @@ use std::{
 };
 
 use anyhow::{Context, Result};
-use directories_next::ProjectDirs;
+use directories::ProjectDirs;
 use serde::Deserialize;
 
 #[derive(Default, Deserialize)]

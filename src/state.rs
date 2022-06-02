@@ -2,7 +2,7 @@ use std::{collections::BTreeMap, fs, io::ErrorKind, path::PathBuf};
 
 use anyhow::{Context, Result};
 use chrono::prelude::*;
-use directories_next::ProjectDirs;
+use directories::ProjectDirs;
 use serde::{Deserialize, Serialize};
 
 #[derive(Default, Serialize, Deserialize)]
