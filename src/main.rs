@@ -15,7 +15,7 @@ use ipwall::{
 #[derive(Parser)]
 #[clap(about, author, version)]
 struct Opts {
-    #[clap(short, long)]
+    #[clap(short, long, action)]
     uninstall: bool,
 }
 

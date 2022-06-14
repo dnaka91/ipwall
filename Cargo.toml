@@ -3,7 +3,6 @@ name = "ipwall"
 version = "0.1.0"
 authors = ["Dominik Nakamura <dnaka91@gmail.com>"]
 edition = "2021"
-rust-version = "1.56"
 license = "GPL-3.0-only"
 description = "Download IP blocklists and add them to your iptables setup"
 
@@ -11,7 +10,7 @@ description = "Download IP blocklists and add them to your iptables setup"
 anyhow = "1.0.57"
 attohttpc = { version = "0.19.1", default-features = false, features = ["compress", "tls-rustls"] }
 chrono = { version = "0.4.19", default-features = false, features = ["clock", "serde", "std"] }
-clap = { version = "3.1.18", features = ["derive"] }
+clap = { version = "3.2.1", features = ["derive"] }
 directories = "4.0.1"
 duct = "0.13.5"
 ipnetwork = { version = "0.19.0", default-features = false }
@@ -22,4 +21,4 @@ which = "4.2.5"
 
 [profile.release]
 lto = true
-panic = "abort"
+strip = true
