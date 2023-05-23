@@ -38,7 +38,7 @@ fn find_binary(name: &str, default: &str) -> Result<PathBuf> {
 impl IpSet {
     pub fn new(name: &str, target: IptablesTarget) -> Result<Self> {
         Ok(Self {
-            name: format!("{}-{}", env!("CARGO_PKG_NAME"), name),
+            name: format!("{}-{name}", env!("CARGO_PKG_NAME")),
             ipset_path: find_binary("ipset", "/usr/sbin/ipset")?,
             iptables_path: find_binary("iptables", "/usr/sbin/iptables")?,
             target,
@@ -68,8 +68,8 @@ impl Firewall for IpSet {
 
         for chain in &["INPUT", "FORWARD"] {
             if !output.contains(&format!(
-                "-A {} -p tcp -m multiport --dports 22,80,443 -m set --match-set {} src -j {}",
-                chain, &self.name, self.target,
+                "-A {chain} -p tcp -m multiport --dports 22,80,443 -m set --match-set {} src -j {}",
+                &self.name, self.target,
             )) {
                 let mut args = vec![
                     "-I",
@@ -142,20 +142,19 @@ impl Firewall for IpSet {
 
         writeln!(
             &mut buf,
-            "create {} hash:net maxelem {}",
-            temp_set,
+            "create {temp_set} hash:net maxelem {}",
             ips.len() + 10000
         )
         .unwrap();
 
         for ip in ips {
             if let IpNetwork::V4(ip) = ip {
-                writeln!(&mut buf, "add {} {}", temp_set, ip).unwrap();
+                writeln!(&mut buf, "add {temp_set} {ip}").unwrap();
             }
         }
 
-        writeln!(&mut buf, "swap {} {}", temp_set, self.name).unwrap();
-        writeln!(&mut buf, "destroy {}", temp_set).unwrap();
+        writeln!(&mut buf, "swap {temp_set} {}", self.name).unwrap();
+        writeln!(&mut buf, "destroy {temp_set}").unwrap();
 
         cmd!(&self.ipset_path, "restore").stdin_bytes(buf).run()?;
 

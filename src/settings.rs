@@ -81,7 +81,7 @@ impl Settings {
             Err(e) => return Err(e.into()),
         };
 
-        toml::from_slice(&content).map_err(Into::into)
+        basic_toml::from_slice(&content).map_err(Into::into)
     }
 }
 

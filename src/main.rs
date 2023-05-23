@@ -66,18 +66,18 @@ fn run_safe(source: &Source, target: IptablesTarget, uninstall: bool, state: &mu
 
     match run(source, target, uninstall, state) {
         Ok(lm) => {
-            println!("{}ed {} filters", command, source.name());
+            println!("{command}ed {} filters", source.name());
 
             if let Some(lm) = lm {
                 state.last_modified.insert(source.name().to_owned(), lm);
 
                 if let Err(e) = state.save() {
-                    eprintln!("error saving settings:\n{:?}", e);
+                    eprintln!("error saving settings:\n{e:?}");
                 }
             }
         }
 
-        Err(e) => eprintln!("error {}ing {} filters:\n{:?}", command, source.name(), e),
+        Err(e) => eprintln!("error {command}ing {} filters:\n{e:?}", source.name()),
     }
 }
 

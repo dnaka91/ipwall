@@ -2,11 +2,12 @@
 [licenses]
 allow = [
     "MPL-2.0",
-    "OpenSSL"
+    "OpenSSL",
 ]
 allow-osi-fsf-free = "both"
 exceptions = [
-    { allow = ["GPL-3.0"], name = "ipwall", version = "*" },
+    { allow = ["GPL-3.0"], name = "ipwall" },
+    { allow = ["Unicode-DFS-2016"], name = "unicode-ident" },
 ]
 
 [[licenses.clarify]]

@@ -21,7 +21,7 @@ impl State {
             Err(e) => return Err(e.into()),
         };
 
-        toml::from_slice(&content).map_err(Into::into)
+        basic_toml::from_slice(&content).map_err(Into::into)
     }
 
     pub fn save(&self) -> Result<()> {
@@ -29,7 +29,7 @@ impl State {
 
         fs::create_dir_all(path.parent().context("no parent path")?)?;
 
-        let content = toml::to_string_pretty(self)?;
+        let content = basic_toml::to_string(self)?;
 
         fs::write(path, content).map_err(Into::into)
     }
