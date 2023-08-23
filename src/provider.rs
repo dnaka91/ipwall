@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use anyhow::{ensure, Result};
+use anyhow::Result;
 use chrono::prelude::*;
 use ipnetwork::IpNetwork;
 
@@ -17,12 +17,10 @@ impl<'a> Provider<'a> {
     }
 
     pub fn get(&self, lm: LastModified) -> Result<(HashSet<IpNetwork>, LastModified)> {
-        let resp = attohttpc::get(self.source.url()).send()?;
+        let resp = ureq::get(self.source.url()).call()?;
 
-        ensure!(resp.is_success(), "failed sending HTTP request");
-
-        let lm = if let Some(value) = resp.headers().get("Last-Modified") {
-            let new_lm = DateTime::parse_from_rfc2822(value.to_str()?)?;
+        let lm = if let Some(value) = resp.header("Last-Modified") {
+            let new_lm = DateTime::parse_from_rfc2822(value)?;
 
             if let Some(lm) = lm {
                 if new_lm < lm {
@@ -36,7 +34,7 @@ impl<'a> Provider<'a> {
         };
 
         let ips = resp
-            .text()?
+            .into_string()?
             .lines()
             .filter_map(|l| {
                 let l = extract_comment(l).trim();
