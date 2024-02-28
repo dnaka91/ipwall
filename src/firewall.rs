@@ -49,7 +49,7 @@ impl IpSet {
         let mut rng = rand::thread_rng();
 
         iter::repeat(())
-            .map(|_| rng.sample(Alphanumeric))
+            .map(|()| rng.sample(Alphanumeric))
             .map(char::from)
             .take(20)
             .collect()

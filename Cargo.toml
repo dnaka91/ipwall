@@ -7,17 +7,17 @@ license = "GPL-3.0-only"
 description = "Download IP blocklists and add them to your iptables setup"
 
 [dependencies]
-anyhow = "1.0.75"
-basic-toml = "0.1.4"
-chrono = { version = "0.4.26", default-features = false, features = ["clock", "serde", "std"] }
-clap = { version = "4.3.23", features = ["derive"] }
+anyhow = "1.0.80"
+basic-toml = "0.1.8"
+chrono = { version = "0.4.34", default-features = false, features = ["clock", "serde", "std"] }
+clap = { version = "4.5.1", features = ["derive"] }
 directories = "5.0.1"
-duct = "0.13.6"
+duct = "0.13.7"
 ipnetwork = { version = "0.20.0", default-features = false }
 rand = "0.8.5"
-serde = { version = "=1.0.171", features = ["derive"] }
-ureq = "2.7.1"
-which = "4.4.0"
+serde = { version = "1.0.197", features = ["derive"] }
+ureq = "2.9.6"
+which = "6.0.0"
 
 [profile.release]
 lto = true

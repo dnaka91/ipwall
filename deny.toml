@@ -1,10 +1,14 @@
 
 [licenses]
+version = 2
 allow = [
+	"Apache-2.0",
+	"BSD-3-Clause",
+	"ISC",
+	"MIT",
     "MPL-2.0",
     "OpenSSL",
 ]
-allow-osi-fsf-free = "both"
 exceptions = [
     { allow = ["GPL-3.0"], name = "ipwall" },
     { allow = ["Unicode-DFS-2016"], name = "unicode-ident" },
@@ -21,5 +25,7 @@ license-files = [
 [bans]
 skip = [
 	{ name = "bitflags", version = "1" },
-	{ name = "rustls-webpki", version = "0.100" },
+]
+skip-tree = [
+	{ name = "windows-sys", version = "0.48", depth = 3 },
 ]
